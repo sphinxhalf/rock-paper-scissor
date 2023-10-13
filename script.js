@@ -65,7 +65,7 @@ function RoundPlay(PlayerChoice, ComputerChoice) {
     // Disable the buttons to prevent further play
     document.getElementById("rock").disabled = true;
     document.getElementById("paper").disabled = true;
-    document.getElementById("scissors").disabled = true;
+    document.getElementById("scissor").disabled = true;
   }
 
 
