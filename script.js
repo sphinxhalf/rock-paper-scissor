@@ -1,12 +1,17 @@
 let playerScore = 0;
 let computerScore = 0;
-
+const resultDiv = document.getElementById("result");
+  
+const resultPara = document.createElement("p");
+const scorePara = document.createElement("p")
+resultDiv.appendChild(resultPara);
+resultDiv.appendChild(scorePara);
 
 function getComputerChoice() {
   const choice = ["rock", "paper", "scissor"];
   const randomIndex = Math.floor(Math.random() * choice.length);
   return choice[randomIndex];
-}
+};
 
 function RoundPlay(PlayerChoice, ComputerChoice) {
     if (PlayerChoice === ComputerChoice) {
@@ -32,23 +37,43 @@ function RoundPlay(PlayerChoice, ComputerChoice) {
     } else {
       return "Invalid choice";
     }
-  }
+  };
 
-  function Game(    ) {
-    for (i = 0; i < 5; i++)
-    {
-        const PlayerChoice = prompt("Choose rock,paper, scissor: ");
-        const ComputerChoice = getComputerChoice();
-        console.log(RoundPlay(PlayerChoice.toLowerCase(), ComputerChoice));
-    }
-    if (playerScore < computerScore) {
-        console.log("You lose the game");
-    } else {
-        console.log("You win the game");
+  function gamePlay(PlayerChoice, ComputerChoice) {
+    resultPara.textContent = RoundPlay(PlayerChoice,ComputerChoice);
+    scorePara.textContent = `Playre: ${playerScore} - Computer: ${computerScore}`;
+    if (playerScore >= 5 ) {
+      resultPara.textContent = "You win the game"
+      disableButtons();
+    } else if (computerScore >= 5) {
+      resultPara.textContent = "Computer win the game";
+      disableButtons();
     }
   }
 
-  Game();
+  document.getElementById("rock").addEventListener("click", function(){
+    gamePlay("rock", getComputerChoice());
+  });
+  document.getElementById("paper").addEventListener("click", function(){
+    gamePlay("paper", getComputerChoice());
+  });
+  document.getElementById("scissor").addEventListener("click", function(){
+    gamePlay("scissor", getComputerChoice());
+  });
+
+  function disableButtons() {
+    // Disable the buttons to prevent further play
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+  }
+
+
+
+
+ 
+
+
 
 
 
